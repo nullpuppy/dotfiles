@@ -10,7 +10,8 @@ set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
 " Load any installed bundles
-call pathogen#infect()
+runtime bundle/pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 
 " Core {{{
 " Sadly, we can't rely on the distro to be sane for the basics
@@ -498,8 +499,8 @@ let g:miniBufExplUseSingleClick=1
 " Powerline configuration stuffs {{{
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_stl_path_style = 'short'
-let g:Powerline_theme = 'skwp'
-let g:Powerline_colorscheme = 'skwp'
+let g:Powerline_theme = 'default'
+let g:Powerline_colorscheme = 'default'
 " }}}
 
 autocmd vimenter * if !argc() | NERDTree | endif
