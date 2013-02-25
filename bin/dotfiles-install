@@ -1,0 +1,30 @@
+#!/bin/sh
+
+bindir=$(cd $(dirname $0) && pwd)
+
+$bindir/dotfiles-links | while IFS='	' read linkable dest; do
+    if [ -h "$dest" ]; then
+        rm -f "$dest"
+    elif [ -e "$dest" ]; then
+        if [ "$1" = "-f" ]; then
+            echo >&2 "Warning: forced, removing $dest"
+            rm -rf "$dest"
+        else
+            echo >&2 "Warning: $dest exists, skipping"
+            continue
+        fi
+    fi
+    echo >&2 "Linking $dest"
+    mkdir -p "$(dirname "$dest")"
+    ln -s "$linkable" "$dest"
+
+    # Link .gitconfig to ~/.gitconfig if git is older than 1.8
+    if [[ "$linkable" =~ "git" && ($(git --version | awk '{print $3}') < '1.8') ]]; then
+        ln -s "$dest"/config ${HOME}/.gitconfig
+    fi
+
+    # Make sure ~/.cache/vim exists for viminfo
+    if [[ "$linkable =~ "config/vim" ]]; then
+        mkdir -p $XDG_CACHE_HOME/vim
+    fi
+done

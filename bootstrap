@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+dotfiles=$1
+if [ -z "$dotfiles" ]; then
+    dotfiles=~/.dotfiles
+fi
+
+if [ ! -e $dotfiles ]; then
+    git clone --recursive git://github.com/nullpuppy/dotfiles $dotfiles
+fi
+cd $dotfiles
+
+$dotfiles/bin/dotfiles-install
+
+mkdir -p $HOME/.local/share/{less,fasd}
+
+# Make sure ~/.config and ~/.cache exist
+if [[ -n $XDG_CONFIG_HOME ]]; then
+    mkdir -p $XDG_CONFIG_HOME $XDG_CACHE_HOME
+fi
+

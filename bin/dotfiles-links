@@ -1,0 +1,32 @@
+#!/bin/sh
+
+excluded="bootstrap|config|TODO|BUGS"
+
+bindir=$(readlink $(dirname $0) 2>/dev/null)
+if [ $? -ne 0 ]; then
+    bindir=$(cd $(dirname $0) && pwd)
+fi
+dotfiles=$(dirname $bindir)
+if [ ! -e $dotfiles/.git ] && [ ! -e $dotfiles/.hg ]; then
+    echo >&2 "Unable to locate dotfiles, falling back to ~/.dotfiles"
+    dotfiles=$HOME/.dotfiles
+fi
+
+alias relpath=$(cd $dotfiles/bin && pwd)/relpath
+
+relative_from_home=$(relpath $HOME $dotfiles)
+cd $dotfiles
+
+ls | grep -Ev "^($excluded)$" | while read path; do
+    printf "$relative_from_home/$path\t$HOME/.$path\n"
+done
+
+if test -e config; then
+    mkdir -p $HOME/.config
+    mkdir -p $HOME/.cache
+    ls config | cut -d/ -f2- | while read path; do
+        relative_path=$(relpath $HOME/.config $dotfiles/config/$path)
+        printf "$relative_path\t$HOME/.config/$path\n"
+    done
+fi
+

@@ -1,0 +1,27 @@
+[submodule "config/zsh/.zprezto"]
+	path = config/zsh/.zprezto
+	url = https://github.com/nullpuppy/prezto
+[submodule "prezto"]
+	path = config/zsh/.zprezto
+	url = https://github.com/nullpuppy/prezto
+[submodule "vim-pathogen"]
+	path = config/vim/bundle/pathogen
+	url = https://github.com/tpope/vim-pathogen
+[submodule "vim-commentary"]
+	path = config/vim/bundle/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "minibufexpl"]
+	path = config/vim/bundle/minibufexpl
+	url = git@github.com:fholgado/minibufexpl.vim.git
+[submodule "nerdtree"]
+	path = config/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "nerdtree-project"]
+	path = config/vim/bundle/nerdtree-project
+	url = https://github.com/vim-scripts/NERD_tree-Project
+[submodule "powerline"]
+	path = config/vim/bundle/vim-powerline
+	url = https://github.com/Lokaltog/vim-powerline
+[submodule "vim-gundo"]
+	path = config/vim/bundle/gundo
+	url = https://github.com/vim-scripts/Gundo

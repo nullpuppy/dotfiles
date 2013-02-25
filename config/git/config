@@ -1,0 +1,9 @@
+[core]
+	pager = most
+[user]
+	email = dustin@nulldomain.com
+	name = Dustin Knie
+[color]
+	ui = auto
+[push]
+	default = simple
