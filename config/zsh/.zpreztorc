@@ -35,9 +35,7 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'ruby' \
   'git' \
-  'git-omz' \
   'ssh-agent' \
-  'get-short-path' \
   'tmux' \
   'syntax-highlighting' \
   'history-substring-search'
