@@ -100,6 +100,7 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.DS_Store                       " OSX metadata
 set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc,*.pyo                      " Python byte code
+set wildignore+=*.class,*.jar                    " Java bytecode
 
 " Less annoying escaping for regexes
 set magic
@@ -179,6 +180,7 @@ set formatoptions+=rn1
 " 4 space indentation by default
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 set expandtab
 
 " Copy indent from current line when starting a new line
@@ -497,20 +499,58 @@ let g:miniBufExplUseSingleClick=1
 " }}}
 
 " Powerline configuration stuffs {{{
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_stl_path_style = 'short'
-let g:Powerline_theme = 'default'
-let g:Powerline_colorscheme = 'default'
+" let g:Powerline_symbols = 'fancy'
+" let g:Powerline_stl_path_style = 'short'
+" let g:Powerline_theme = 'default'
+" let g:Powerline_colorscheme = 'default'
 " }}}
 
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Vim-Airline configuration stuffs {{{
+" let g:airline_enable_branch = 1
+" let g:airline_enable_syntastic = 1
+" let g:airline_detect_modified = 1
+" let g:airline_detect_paste = 1
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_branch_prefix = '⭠'
+let g:airline_readonly_symbol = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+" }}}
 
-map <silent> <LocalLeader><tab> :NERDTreeFocus<cr>
-nnoremap <F8> <Esc>:ToggleNERDTree<CR>
+" Sudo save!
+cnoremap w!! w !sudo tee % >/dev/null<cr>
 
 vnoremap <leader>y y:call system('xclip', @0)<cr>
 nnoremap <leader>y yy:call system('xclip', @0)<cr>
 
+function! RunJUNITTest()
+  let s:method = expand("<cword>")
+  let s:root = substitute(expand('%:p'), '\(.*\)/src.*', '\1', '')
+  let s:uri = substitute(expand('%:p'), '.*/src/\(.*\)\.java', '\1', '')
+  let s:uri = substitute(s:uri, '/', '.', 'g')
+  let s:target = join([s:uri, s:method], '\#')
+  :call VimuxRunCommand('runTest.sh ' . s:root . ' ' . s:target)
+endfunction
+
+function! s:DiffWithGitCheckedOut()
+  let filetype=&ft
+  diffthis
+  vnew | exe "%!git diff " . expand("#:p:h") . "| patch -p 1 -Rs -o /dev/stdout"
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  diffthis
+endfunction
+com! DiffGIT call s:DiffWithGitCheckedOut()
+
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
 
 " vim:set sts=2 sw=2 et fdm=marker fdl=99:
