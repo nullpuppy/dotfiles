@@ -25,3 +25,6 @@
 [submodule "config/vim/bundle/file-line"]
 	path = config/vim/bundle/file-line
 	url = https://github.com/bogado/file-line
+[submodule "config/vim/bundle/vim-ag"]
+	path = config/vim/bundle/vim-ag
+	url = http://github.com/rking/ag.vim
