@@ -13,9 +13,6 @@
 [submodule "config/vim/bundle/ctrlp"]
 	path = config/vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim
-[submodule "config/vim/bundle/vim-ag"]
-	path = config/vim/bundle/vim-ag
-	url = https://github.com/rking/ag.vim
 [submodule "config/vim/bundle/vim-airline"]
 	path = config/vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
