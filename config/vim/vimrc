@@ -520,6 +520,10 @@ let g:airline_readonly_symbol = '⭤'
 let g:airline_linecolumn_prefix = '⭡'
 " }}}
 
+" CtrlSpace configuration {{{
+let g:ctrlspace_use_mouse_and_arrows=1
+" }}}
+
 " Sudo save!
 cnoremap w!! w !sudo tee % >/dev/null<cr>
 
