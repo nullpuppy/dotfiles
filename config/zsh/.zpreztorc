@@ -33,7 +33,9 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'prompt' \
+  'haskell' \
   'ruby' \
+  'python' \
   'git' \
   'ssh' \
   'tmux' \
