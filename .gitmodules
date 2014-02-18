@@ -28,3 +28,6 @@
 [submodule "config/vim/bundle/vim-ag"]
 	path = config/vim/bundle/vim-ag
 	url = http://github.com/rking/ag.vim
+[submodule "config/liquidprompt"]
+	path = config/liquidprompt
+	url = https://github.com/nojhan/liquidprompt
