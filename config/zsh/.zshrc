@@ -27,6 +27,5 @@ else
 fi
 # }}}
 
-if [[ -d ${HOME}/.bin ]]; then
-    export PATH=$PATH:${HOME}/.bin
-fi
+typeset -U path
+[[ -d ${HOME}/.bin ]] && path=( ${HOME}/.bin $path)
