@@ -31,3 +31,6 @@
 [submodule "config/liquidprompt"]
 	path = config/liquidprompt
 	url = https://github.com/nojhan/liquidprompt
+[submodule "config/vim/bundle/vim-multiple-cursors"]
+	path = config/vim/bundle/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors
