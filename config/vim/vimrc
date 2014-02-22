@@ -484,40 +484,26 @@ if !exists('$HOSTNAME') && executable('hostname')
 endif
 runtime vimrc.$HOSTNAME
 
-" MiniBufExplorer stuff {{{
-" switch focus to minibufexpl
-map <leader>b :MiniBufExplorer<cr>
-" toggle minibufexpl
-map <leader>t :TMiniBufExplorer<cr>
-let g:miniBufExplSplitBelow=0
-let g:miniBufExplMinSize=1
-let g:miniBufExplMaxSize=5
-let g:miniBufExplMapWindowNavArrows=1
-" let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplMapCTabSwitchWindows=1
-let g:miniBufExplUseSingleClick=1
-" }}}
-
-" Powerline configuration stuffs {{{
-" let g:Powerline_symbols = 'fancy'
-" let g:Powerline_stl_path_style = 'short'
-" let g:Powerline_theme = 'default'
-" let g:Powerline_colorscheme = 'default'
-" }}}
-
 " Vim-Airline configuration stuffs {{{
-" let g:airline_enable_branch = 1
-" let g:airline_enable_syntastic = 1
-" let g:airline_detect_modified = 1
-" let g:airline_detect_paste = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_enable_branch = 1
+let g:airline_enable_syntastic = 1
+let g:airline_detect_modified = 1
+let g:airline_detect_paste = 1
+"
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep = '⮀'
 let g:airline_left_alt_sep = '⮁'
 let g:airline_right_sep = '⮂'
 let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⎇'
 let g:airline_branch_prefix = '⭠'
 let g:airline_readonly_symbol = '⭤'
 let g:airline_linecolumn_prefix = '⭡'
+let g:airline_symbols.whitespace = 'Ξ'
 " }}}
 
 " CtrlSpace configuration {{{
@@ -556,5 +542,19 @@ function! s:DiffWithSaved()
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffSaved call s:DiffWithSaved()
+
+" from vim.wikia.com/wiki/SmartHome
+function! SmartHome()
+  let first_nonblank = match(getline(','), '\S') + 1
+  if first_nonblank == 0
+    return col('.') + 1 >= col('$') ? '0' : '^'
+  endif
+  if col('.') == first_nonblank
+    return '0' " if at first nonblank, go to start line
+  endif
+  return &wrap && wincol() > 1 ? 'g^' : '^'
+endfunction
+noremap <expr> <silent> <Home> SmartHome()
+imap <silent> <Home> <C-O><Home>
 
 " vim:set sts=2 sw=2 et fdm=marker fdl=99:

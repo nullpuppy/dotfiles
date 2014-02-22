@@ -34,3 +34,9 @@
 [submodule "config/vim/bundle/vim-multiple-cursors"]
 	path = config/vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
+[submodule "config/vim/bundle/vim-git"]
+	path = config/vim/bundle/vim-git
+	url = https://github.com/tpope/vim-git
+[submodule "config/vim/bundle/vim-fugitive"]
+	path = config/vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
