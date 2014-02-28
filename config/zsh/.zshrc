@@ -47,18 +47,28 @@ tna() {
 # virtualenv stuff.
 [[ -z $VIRTUALENVS ]] && VIRTUALENVS=${HOME}/.virtualenvs
 
-ve() {
+lve() {
+    # TODO expand to list python versions for each.
+    [[ ! -z $1 ]] && ls $1 || ls ${VIRTUALENVS}
+}
+
+ave() {
     [[ ! -z $1 ]] && [[ -d ${VIRTUALENVS}/$1 ]] && source ${VIRTUALENVS}/$1/bin/activate || return 1
 }
 
-ce() {
+cve() {
     [[ ! -e ${VIRTUALENVS} ]] && mkdir -p ${VIRTUALENVS}
     [[ -z $1 ]] || [[ -e ${VIRTUALENVS}/$1 ]] && return 1
     [[ ! -z $2 ]] && USEPY="-p $2" && [[ ! -f $2 ]] && return 1
     which virtualenv > /dev/null && VE=virtualenv || which virtualenv2 > /dev/null && VE=virtualenv2
     [[ -z $VE ]] && return 1
-    [[ -n $VE ]] && echo $VE $USEPY $VIRTUALENVS/$1
+    [[ -n $VE ]] && $VE $USEPY $VIRTUALENVS/$1
     unset -v VE USEPY
+}
+
+cave() {
+    [[ -z $1 ]] && return 1
+    [[ ! -z $1 ]] && [[ ! -e ${VIRTUALENVS}/$1 ]] && cve $1 $2 && ave $1 || ave $1 || return 1
 }
 # }}}
 
