@@ -510,6 +510,11 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:ctrlspace_use_mouse_and_arrows=1
 " }}}
 
+" CtrlSpace configuration stuffs {{{
+let g:ctrlspace_use_tabline = 1
+let g:ctrlspace_use_mouse_and_arrows = 1
+" }}}
+
 " Sudo save!
 cnoremap w!! w !sudo tee % >/dev/null<cr>
 
