@@ -52,3 +52,6 @@
 [submodule "config/zsh/plugins/bd"]
 	path = config/zsh/plugins/bd
 	url = https://github.com/Tarrasch/zsh-bd
+[submodule "config/vim/bundle/vim-scala"]
+	path = config/vim/bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala
