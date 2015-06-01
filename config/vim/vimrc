@@ -170,8 +170,11 @@ set splitright
 " More useful % matching
 runtime macros/matchit.vim
 
-" Use the vim version of monokai
-colorscheme inkpot " molokai
+" For Base16
+let base16colorspace=256 " Access colors present in 256 colorspace
+
+set background=dark
+colorscheme base16-default
 
 " }}}
 " Indentation and formatting {{{
@@ -507,12 +510,8 @@ let g:airline_symbols.whitespace = 'Ξ'
 " }}}
 
 " CtrlSpace configuration {{{
-let g:ctrlspace_use_mouse_and_arrows=1
-" }}}
-
-" CtrlSpace configuration stuffs {{{
 let g:ctrlspace_use_tabline = 1
-let g:ctrlspace_use_mouse_and_arrows = 1
+let g:ctrlspace_use_mouse_and_arrows_in_term=1
 " }}}
 
 " Sudo save!

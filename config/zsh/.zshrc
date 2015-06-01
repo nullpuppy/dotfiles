@@ -3,6 +3,7 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Dustin Knie <nullpuppy@gmail.com>
 #
 
 # Source Prezto.
@@ -18,6 +19,14 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 # Use Liquidprompt
 source ~/.config/liquidprompt/liquidpromptrc
 source ~/.config/liquidprompt/liquidprompt
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+bindkey -e
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 # Aliases {{{
 # tmux stuff
@@ -73,4 +82,12 @@ cave() {
 # }}}
 
 typeset -U path
-[[ -d ${HOME}/.bin ]] && path=( ${HOME}/.bin $path)
+[[ -d ${HOME}/.bin ]] && path=( ${HOME}/.bin $path )
+[[ -d ${HOME}/.nodebrew/current/bin ]] && path=( ${HOME}/.nodebrew/current/bin $path )
+[[ -d ${HOME}/.local/android_sdk ]] && path=( $path ${HOME}/.local/android_sdk/tools ${HOME}/.local/android_sdk/platform-tools )
+
+# zsh-bd
+. $ZDOTDIR/plugins/bd/bd.zsh
+
+# nodebrew things
+# export NODEBREW_ROOT=/usr/local/var/nodebrew
