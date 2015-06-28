@@ -1,60 +1,80 @@
 [submodule "prezto"]
 	path = config/zsh/.zprezto
 	url = https://github.com/nullpuppy/prezto
+	ignore = dirty
 [submodule "vim-pathogen"]
 	path = config/vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen
+	ignore = dirty
 [submodule "vim-commentary"]
 	path = config/vim/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+	ignore = dirty
 [submodule "vim-gundo"]
 	path = config/vim/bundle/gundo
 	url = https://github.com/vim-scripts/Gundo
+	ignore = dirty
 [submodule "config/vim/bundle/ctrlp"]
 	path = config/vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim
+	ignore = dirty
 [submodule "config/vim/bundle/vim-airline"]
 	path = config/vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
+	ignore = dirty
 [submodule "config/vim/bundle/syntastic"]
 	path = config/vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic
+	ignore = dirty
 [submodule "config/vim/bundle/vim-ctrlspace"]
 	path = config/vim/bundle/vim-ctrlspace
 	url = https://github.com/szw/vim-ctrlspace
+	ignore = dirty
 [submodule "config/vim/bundle/file-line"]
 	path = config/vim/bundle/file-line
 	url = https://github.com/bogado/file-line
+	ignore = dirty
 [submodule "config/vim/bundle/vim-ag"]
 	path = config/vim/bundle/vim-ag
 	url = http://github.com/rking/ag.vim
+	ignore = dirty
 [submodule "config/liquidprompt"]
 	path = config/liquidprompt
 	url = https://github.com/nojhan/liquidprompt
+	ignore = dirty
 [submodule "config/vim/bundle/vim-multiple-cursors"]
 	path = config/vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
+	ignore = dirty
 [submodule "config/vim/bundle/vim-git"]
 	path = config/vim/bundle/vim-git
 	url = https://github.com/tpope/vim-git
+	ignore = dirty
 [submodule "config/vim/bundle/vim-fugitive"]
 	path = config/vim/bundle/vim-fugitive
+	ignore = dirty
 	url = https://github.com/tpope/vim-fugitive
 [submodule "config/vim/bundle/vim-unimpaired"]
 	path = config/vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
+	ignore = dirty
 [submodule "config/vim/bundle/base16-vim"]
 	path = config/vim/bundle/base16-vim
 	url = https://github.com/chriskempson/base16-vim
+	ignore = dirty
 [submodule "config/base16-shell"]
 	path = config/base16-shell
 	url = https://github.com/chriskempson/base16-shell
+	ignore = dirty
 [submodule "config/zsh/plugins/bd"]
 	path = config/zsh/plugins/bd
 	url = https://github.com/Tarrasch/zsh-bd
+	ignore = dirty
 [submodule "config/vim/bundle/vim-scala"]
 	path = config/vim/bundle/vim-scala
 	url = https://github.com/derekwyatt/vim-scala
+	ignore = dirty
 [submodule "config/vim/bundle/YouCompleteMe"]
 	path = config/vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
+	ignore = dirty
