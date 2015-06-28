@@ -78,3 +78,6 @@
 	path = config/vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
 	ignore = dirty
+[submodule "config/vim/bundle/vim-surround"]
+	path = config/vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
