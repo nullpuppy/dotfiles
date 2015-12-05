@@ -17,7 +17,5 @@ $dotfiles/bin/dotfiles-install
 mkdir -p $HOME/.local/share/{less,fasd}
 
 # Make sure ~/.config and ~/.cache exist
-if [[ -n $XDG_CONFIG_HOME ]]; then
-    mkdir -p $XDG_CONFIG_HOME $XDG_CACHE_HOME
-fi
+mkdir ~/.config ~/.cache
 

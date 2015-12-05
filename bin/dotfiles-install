@@ -25,6 +25,6 @@ $bindir/dotfiles-links | while IFS='	' read linkable dest; do
 
     # Make sure ~/.cache/vim exists for viminfo
     if [[ "$linkable" =~ "config/vim" ]]; then
-        mkdir -p $XDG_CACHE_HOME/vim
+        mkdir -p ~/.cache/vim
     fi
 done
