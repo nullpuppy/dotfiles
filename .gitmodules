@@ -16,7 +16,7 @@
 	ignore = dirty
 [submodule "config/vim/bundle/ctrlp"]
 	path = config/vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim
 	ignore = dirty
 [submodule "config/vim/bundle/vim-airline"]
 	path = config/vim/bundle/vim-airline
