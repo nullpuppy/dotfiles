@@ -55,7 +55,7 @@ tna() {
 # }}}
 
 # pyenv virtualenv -- init if installed
-command -v pyenv 2>&1 && eval "$(pyenv virtualenv-init -)"
+command -v pyenv > /dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
 
 typeset -U path
 [[ -d ${HOME}/.bin ]] && path=( ${HOME}/.bin $path )
