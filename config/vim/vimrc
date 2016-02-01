@@ -9,9 +9,18 @@ set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
+" To disable a plugin, add it's bundle name to the following list.
+let g:pathogen_disabled = []
+
+" YCM and pyenv don't behave currently. YCM also requires Vim 7.3.598+
+if v:version < 703 || !has('patch598') || !has('python')
+  call add(g:pathogen_disabled, "YouCompleteMe")
+endif
+
 " Load any installed bundles
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
+execute pathogen#helptags()
 
 " Core {{{
 " Sadly, we can't rely on the distro to be sane for the basics
@@ -501,8 +510,29 @@ let g:airline_powerline_fonts = 1
 " }}}
 
 " CtrlSpace configuration {{{
-let g:ctrlspace_use_tabline = 1
-let g:ctrlspace_use_mouse_and_arrows_in_term=1
+let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
+if executable("ag")
+  let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
+" }}}
+
+" Syntastic configuration {{{
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+" }}}
+
+" YouCompleteMe configuration {{{
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+" }}}
+
+" vim-go configuration {{{
+let g:go_fmt_command = "goimports"
+
+au Filetype go nnoremap <leader>v :vsp<CR>:exe "GoDef"<CR>
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef" <CR>
 " }}}
 
 " Sudo save!
