@@ -56,18 +56,30 @@ tna() {
 
 # pyenv virtualenv -- init if installed
 command -v pyenv > /dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
+# docker-machine init
+command -v docker-machine > /dev/null 2>&1 && [[ $(docker-machine status default) == "Running" ]] && eval "$(docker-machine env default)"
+
+# iterm2 shell integration.
+[[ -f ${HOME}/.iterm2_shell_integration.zsh ]] && source ${HOME}/.iterm2_shell_integration.zsh
 
 typeset -U path
 [[ -d ${HOME}/.bin ]] && path=( ${HOME}/.bin $path )
 [[ -d ${HOME}/.nodebrew/current/bin ]] && path=( ${HOME}/.nodebrew/current/bin $path )
 [[ -d ${HOME}/.local/android_sdk ]] && path=( $path ${HOME}/.local/android_sdk/tools ${HOME}/.local/android_sdk/platform-tools )
+[[ -d ${HOME}/code/go/bin ]] && path=( $path ${HOME}/code/go/bin )
+
+# Golang things {{{
+[[ -d ${HOME}/code/go ]] && export GOPATH=${HOME}/code/go
+export GO15VENDOREXPERIMENT=1
+# }}}
 
 # zsh-bd
 . $ZDOTDIR/plugins/bd/bd.zsh
 
 # nodebrew things
-# export NODEBREW_ROOT=/usr/local/var/nodebrew
+[[ -f /usr/local/var/nodebrew ]] && export NODEBREW_ROOT=/usr/local/var/nodebrew
 
+# ^p/^<space> via zsh {{{
 ctrlp() {
   </dev/tty vim -c CtrlP
 }
@@ -75,9 +87,15 @@ zle -N ctrlp
 
 bindkey "^p" ctrlp
 
-
 ctrlspace() {
     </dev/tty vim -c CtrlSpace
 }
 zle -N ctrlspace
 bindkey "^ " ctrlspace
+# }}}
+
+# cwd history prioritization
+[[ -f ${ZDOTDIR:-$HOME}/plugins/zsh-prioritize-cwd-history/ ]] && source ${ZDOTDIR:-$HOME}/plugins/zsh-prioritize-cwd-history/zsh-prioritize-cwd-history.zsh
+
+# Misc things like keys and such.
+[[ -f ${ZDOTDIR:-$HOME}/.zshrc.sec ]] && source "${ZDOTDIR:-$HOME}/.zshrc.sec"
