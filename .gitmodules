@@ -22,10 +22,6 @@
 	path = config/vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
 	ignore = dirty
-[submodule "config/vim/bundle/syntastic"]
-	path = config/vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
-	ignore = dirty
 [submodule "config/vim/bundle/vim-ctrlspace"]
 	path = config/vim/bundle/vim-ctrlspace
 	url = https://github.com/szw/vim-ctrlspace
@@ -87,3 +83,12 @@
 [submodule "config/zsh/plugins/zsh-prioritize-cwd-history"]
 	path = config/zsh/plugins/zsh-prioritize-cwd-history
 	url = https://github.com/ericfreese/zsh-prioritize-cwd-history
+[submodule "config/vim/bundle/ale"]
+	path = config/vim/bundle/ale
+	url = https://github.com/w0rp/ale
+[submodule "config/vim/bundle/vim-abolish"]
+	path = config/vim/bundle/vim-abolish
+	url = https://github.com/tpope/tpope-vim-abolish
+[submodule "config/vim/bundle/vim-eunuch"]
+	path = config/vim/bundle/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
