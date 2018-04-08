@@ -67,6 +67,7 @@ typeset -U path
 [[ -d ${HOME}/.nodebrew/current/bin ]] && path=( ${HOME}/.nodebrew/current/bin $path )
 [[ -d ${HOME}/.local/android_sdk ]] && path=( $path ${HOME}/.local/android_sdk/tools ${HOME}/.local/android_sdk/platform-tools )
 [[ -d ${HOME}/code/go/bin ]] && path=( $path ${HOME}/code/go/bin )
+[[ -d ${HOME}/.cargo/bin ]] && path=( $path ${HOME}/.cargo/bin )
 
 # Golang things {{{
 [[ -d ${HOME}/code/go ]] && export GOPATH=${HOME}/code/go
