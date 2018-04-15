@@ -1,6 +1,6 @@
 [submodule "prezto"]
 	path = config/zsh/.zprezto
-	url = https://github.com/nullpuppy/prezto
+	url = https://github.com/sorin-ionescu/prezto
 	ignore = dirty
 [submodule "vim-pathogen"]
 	path = config/vim/bundle/pathogen
