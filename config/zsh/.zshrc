@@ -13,12 +13,22 @@ fi
 
 # Customize to your needs...
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Move vim/vimrc to xdg compliant location
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 # Use Liquidprompt
-source ~/.config/liquidprompt/liquidpromptrc
-source ~/.config/liquidprompt/liquidprompt
+# source ~/.config/liquidprompt/liquidpromptrc
+# source ~/.config/liquidprompt/liquidprompt
+
+# Powerlevel 10k
+# [[ -e ~/.config/powerlevel10k/powerlevel10k.zsh-theme ]] && source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-default-dark.sh"
@@ -55,9 +65,9 @@ tna() {
 # }}}
 
 # pyenv virtualenv -- init if installed
-command -v pyenv > /dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
+# command -v pyenv > /dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
 # docker-machine init
-command -v docker-machine > /dev/null 2>&1 && [[ $(docker-machine status default) == "Running" ]] && eval "$(docker-machine env default)"
+# command -v docker-machine > /dev/null 2>&1 && [[ $(docker-machine status default) == "Running" ]] && eval "$(docker-machine env default)"
 
 # iterm2 shell integration.
 [[ -f ${HOME}/.iterm2_shell_integration.zsh ]] && source ${HOME}/.iterm2_shell_integration.zsh
@@ -100,3 +110,10 @@ bindkey "^ " ctrlspace
 
 # Misc things like keys and such.
 [[ -f ${ZDOTDIR:-$HOME}/.zshrc.sec ]] && source "${ZDOTDIR:-$HOME}/.zshrc.sec"
+[[ -f ${ZDOTDIR:-$HOME}/.zshrc.local ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
+
+# Ensure asdf is functional
+[[ $(which brew && which asdf) ]] && . $(brew --prefix asdf)/asdf.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
