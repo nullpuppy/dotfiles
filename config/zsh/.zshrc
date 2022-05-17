@@ -12,23 +12,34 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+# Enable starship if it's installed
+if type starship >/dev/null; then
+    export STARSHIP_CONFIG=~/.config/starship/starship.toml
+    eval "$(starship init zsh)"
+else
+    # Otherwise, enable powerlevel10k
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+    # Initialization code that may require console input (password prompts, [y/n]
+    # confirmations, etc.) must go above this block; everything else may go below.
+    if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+      source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    fi
+
+    # Powerlevel 10k
+    [[ -e ~/.config/powerlevel10k/powerlevel10k.zsh-theme ]] && source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+    prompt -s powerlevel10k
 fi
+
 
 # Move vim/vimrc to xdg compliant location
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+# export VIMINIT='if has("nvim") let $MYVIMRC="$XDG_CONFIG_HOME/nvim/init.vim"; else let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"; endif | source $MYVIMRC'
 
 # Use Liquidprompt
 # source ~/.config/liquidprompt/liquidpromptrc
 # source ~/.config/liquidprompt/liquidprompt
 
-# Powerlevel 10k
-# [[ -e ~/.config/powerlevel10k/powerlevel10k.zsh-theme ]] && source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-default-dark.sh"
@@ -77,7 +88,6 @@ typeset -U path
 [[ -d ${HOME}/.nodebrew/current/bin ]] && path=( ${HOME}/.nodebrew/current/bin $path )
 [[ -d ${HOME}/.local/android_sdk ]] && path=( $path ${HOME}/.local/android_sdk/tools ${HOME}/.local/android_sdk/platform-tools )
 [[ -d ${HOME}/code/go/bin ]] && path=( $path ${HOME}/code/go/bin )
-[[ -d ${HOME}/.cargo/bin ]] && path=( $path ${HOME}/.cargo/bin )
 
 # Golang things {{{
 [[ -d ${HOME}/code/go ]] && export GOPATH=${HOME}/code/go
@@ -92,14 +102,14 @@ export GO15VENDOREXPERIMENT=1
 
 # ^p/^<space> via zsh {{{
 ctrlp() {
-  </dev/tty vim -c CtrlP
+  </dev/tty nvim -c CtrlP
 }
 zle -N ctrlp
 
 bindkey "^p" ctrlp
 
 ctrlspace() {
-    </dev/tty vim -c CtrlSpace
+    </dev/tty nvim -c CtrlSpace
 }
 zle -N ctrlspace
 bindkey "^ " ctrlspace
@@ -114,6 +124,19 @@ bindkey "^ " ctrlspace
 
 # Ensure asdf is functional
 [[ $(which brew && which asdf) ]] && . $(brew --prefix asdf)/asdf.sh
+# Direnv
+eval "$(asdf exec direnv hook zsh)"
+direnv() { asdf exec direnv "$@"; }
+
+[[ $(which asdf && asdf where rust 2>/dev/null) ]] && source $(asdf where rust)/env
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# Use exa
+if type exa >/dev/null; then
+    alias ll="exa -l"
+    alias la="exa -la"
+    alias lt="exa -lrtmodified"
+    alias lc="exa -lt"
+fi

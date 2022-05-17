@@ -1,0 +1,29 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Custom format
+format = "$all"
+right_format = "$cmd_duration$time"
+
+[cmd_duration]
+min_time = 500
+show_milliseconds = true
+show_notifications = true
+
+[directory]
+fish_style_pwd_dir_length = 1
+truncate_to_repo = false
+truncation_length = 1
+
+[git_metrics]
+disabled = false
+
+[status]
+disabled = false
+
+[time]
+disabled = false
+format = '🕙[ $time ]($style) '
+time_format = "%Y/%b/%d %T"
+
+
