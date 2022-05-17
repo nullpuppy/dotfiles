@@ -1,3 +1,8 @@
+if has("nvim")
+  source ${XDG_CONFIG_HOME}/nvim/init.vim
+  finish
+endif
+
 " Environment
 " Let's make things respect xdg
 set nocompatible
@@ -237,7 +242,9 @@ runtime! ftplugin/man.vim
 
 " Change the current directory to the location of the
 " file being edited.
-command! -nargs=0 -complete=command Bcd lcd %:p:h
+" command! -nargs=0 -complete=command Bcd lcd %:p:h
+set autochdir
+
 " }}}
 " Key Mapping {{{
 " Fix command typos
