@@ -92,9 +92,6 @@
 [submodule "config/vim/bundle/vim-eunuch"]
 	path = config/vim/bundle/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch
-[submodule "config/vim/bundle/vim-angular"]
-	path = config/vim/bundle/vim-angular
-	url = https://github.com/burnettk/vim-angular
 [submodule "config/vim/bundle/vim-javascript"]
 	path = config/vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
