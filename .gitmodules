@@ -34,10 +34,6 @@
 	path = config/vim/bundle/vim-ag
 	url = http://github.com/rking/ag.vim
 	ignore = dirty
-[submodule "config/liquidprompt"]
-	path = config/liquidprompt
-	url = https://github.com/nojhan/liquidprompt
-	ignore = dirty
 [submodule "config/vim/bundle/vim-multiple-cursors"]
 	path = config/vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors
