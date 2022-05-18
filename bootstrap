@@ -12,7 +12,7 @@ if [ ! -e $dotfiles ]; then
 fi
 cd $dotfiles
 
-$dotfiles/bin/dotfiles-install
+$dotfiles/scripts/dotfiles-install
 
 mkdir -p $HOME/.local/share/{less,fasd}
 
