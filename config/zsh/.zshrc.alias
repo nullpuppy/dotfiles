@@ -1,0 +1,55 @@
+# Aliases
+# exa {{{
+if type exa >/dev/null; then
+    alias l='exa -lahF --color=always --icons --sort=size --group-directories-first'
+    alias ls='exa -lhF --color=always --icons --sort=size --group-directories-first'
+    alias lst='exa -lahFT --color=always --icons --sort=size --group-directories-first'
+    alias ll='exa -l'
+    alias la='exa -la'
+    alias lt='exa -lrtmodified'
+    alias lc='exa -lt'
+    alias tree='exa -T'
+fi
+# }}}
+
+# bat {{{
+if type bat >/dev/null; then
+    alias cat='bat'
+    alias less='bat'
+    alias more='bat'
+fi
+# }}}
+
+alias rg='rg --sort path --no-ignore --hidden'
+alias rip='expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl'
+alias riplong='expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl'
+alias sxiv='devour sxiv'
+alias zathura='devour zathura'
+
+
+# tmux {{{
+if [[ -e $XDG_CONFIG_HOME/tmux/config ]]; then
+	alias tmux="tmux -u2 -f $XDG_CONFIG_HOME/tmux/config"
+else
+	alias tmux="tmux -u2"
+fi
+
+ta() {
+	[[ -z $1 ]] && tmux attach || tmux attach -t $1
+}
+tk() {
+	[[ -z $1 ]] && return 1
+	tmux kill-session -t $1
+}
+tls() { tmux ls }
+tn() {
+	[[ ! -z $1 ]] && tmux has-session &> /dev/null && tmux has-session $1 &> /dev/null && return 1
+	[[ ! -z $1 ]] && tmux new-session -d -s $1 || tmux new-session -d
+}
+tna() {
+	[[ ! -z $1 ]] && tmux has-session &> /dev/null && tmux has-session $1 &> /dev/null && return 1
+	[[ ! -z $1 ]] && tmux new-session -s $1 || tmux new-session
+}
+# }}}
+
+
